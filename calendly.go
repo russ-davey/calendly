@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
 )
@@ -32,7 +33,13 @@ func NewClient(token string) *Client {
 	}
 }
 
-func get(client *Client, url string, response interface{}) error {
+func UnmarshallAPIError(err error) ErrorBody {
+	eb := ErrorBody{}
+	json.Unmarshal([]byte(err.Error()), &eb)
+	return eb
+}
+
+func Get(client *Client, url string, response interface{}) error {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
@@ -46,28 +53,29 @@ func get(client *Client, url string, response interface{}) error {
 
 	if res.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(res.Body)
-		res.Body.Close()
-		fmt.Printf("Calendly API error: %v", string(body))
-		return errors.New(fmt.Sprintf("Calendly API error: %s", body))
+		defer res.Body.Close()
+		log.Printf("Calendly API error: %s", body)
+		return errors.New(string(body))
 	}
-
 	return json.NewDecoder(res.Body).Decode(&response)
 }
 
+// GetScheduledEvent Returns information about a specified Event.
 func (cy *Calendly) GetScheduledEvent(client *Client, uuid string) (GetEventResponse, error) {
 	response := GetEventResponse{}
 
 	url := fmt.Sprintf("%s/scheduled_events/%s", client.baseURL, uuid)
-	err := get(client, url, &response)
+	err := Get(client, url, &response)
 
 	return response, err
 }
 
+// GetEventType Returns information about a specified Event Type.
 func (cy *Calendly) GetEventType(client *Client, uuid string) (GetEventTypeResponse, error) {
 	response := GetEventTypeResponse{}
 
 	url := fmt.Sprintf("%s/event_types/%s", client.baseURL, uuid)
-	err := get(client, url, &response)
+	err := Get(client, url, &response)
 
 	return response, err
 }

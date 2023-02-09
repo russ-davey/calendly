@@ -91,3 +91,15 @@ type GetEventTypeResponse struct {
 		URI           string    `json:"uri"`
 	} `json:"resource"`
 }
+
+type Details []struct {
+	Parameter string `json:"parameter,omitempty"`
+	Message   string `json:"message,omitempty"`
+}
+
+// ErrorBody all Calendly non-200 status bodies are returned in this struct format
+type ErrorBody struct {
+	Title   string `json:"title"`
+	Message string `json:"message"`
+	Details `json:"details,omitempty"`
+}
