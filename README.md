@@ -1,4 +1,4 @@
-# calendly-api
+# calendly
 Basic API client for accessing the Calendly API
 
 Nothing too flashy for the moment, but more functionally will be added over time
@@ -17,5 +17,5 @@ go get github.com/russ-davey/calendly-api
 All interaction starts with a `calendlyAPI.Client`. Create one with your Calendly token:
 
 ```Go
-client := calendlyAPI.NewClient(token)
+client := calendly.NewClient(token)
 ```
