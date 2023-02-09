@@ -15,10 +15,10 @@ func TestGetEventType(t *testing.T) {
 
 	Convey("Given the Calendly API event_types endpoint needs to be accessed", t, func() {
 		Convey("When the getting the event type details", func() {
-			result, err := cy.GetEventType(client, "8ead31de-0033-457a-8646-124e61742999")
+			results, err := cy.GetEventType(client, "8ead31de-0033-457a-8646-124e61742999")
 			Convey("Then the details are successfully returned", func() {
 				So(err, ShouldBeNil)
-				So(result.Resource.Name, ShouldEqual, "15 Minute Meeting")
+				So(results.Resource.Name, ShouldEqual, "15 Minute Meeting")
 			})
 		})
 	})

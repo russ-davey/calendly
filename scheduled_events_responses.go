@@ -2,6 +2,47 @@ package calendly
 
 import "time"
 
+type GetScheduledEventsResponse struct {
+	Collection []struct {
+		Uri       string    `json:"uri"`
+		Name      string    `json:"name"`
+		Status    string    `json:"status"`
+		StartTime time.Time `json:"start_time"`
+		EndTime   time.Time `json:"end_time"`
+		EventType string    `json:"event_type"`
+		Location  struct {
+			Type     string `json:"type"`
+			Location string `json:"location"`
+		} `json:"location"`
+		InviteesCounter struct {
+			Total  int `json:"total"`
+			Active int `json:"active"`
+			Limit  int `json:"limit"`
+		} `json:"invitees_counter"`
+		CreatedAt        time.Time `json:"created_at"`
+		UpdatedAt        time.Time `json:"updated_at"`
+		EventMemberships []struct {
+			User string `json:"user"`
+		} `json:"event_memberships"`
+		EventGuests []struct {
+			Email     string    `json:"email"`
+			CreatedAt time.Time `json:"created_at"`
+			UpdatedAt time.Time `json:"updated_at"`
+		} `json:"event_guests"`
+		CalendarEvent struct {
+			Kind       string `json:"kind"`
+			ExternalId string `json:"external_id"`
+		} `json:"calendar_event"`
+	} `json:"collection"`
+	Pagination struct {
+		Count             int    `json:"count"`
+		NextPage          string `json:"next_page"`
+		PreviousPage      string `json:"previous_page"`
+		NextPageToken     string `json:"next_page_token"`
+		PreviousPageToken string `json:"previous_page_token"`
+	} `json:"pagination"`
+}
+
 type GetEventResponse struct {
 	Resource struct {
 		CalendarEvent struct {
