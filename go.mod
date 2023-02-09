@@ -1,4 +1,4 @@
-module github.com/russ-davey/calendly-api
+module github.com/russ-davey/calendly
 
 go 1.18
 
