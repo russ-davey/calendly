@@ -1,0 +1,7 @@
+# files
+.DS_Store
+
+# directories
+.idea/
+bin/
+vendor/
