@@ -17,6 +17,7 @@ type Client struct {
 
 type Calendly struct {
 	Client *Client
+	ScheduledEvents
 }
 
 func NewClient(token string) *Client {
@@ -58,16 +59,6 @@ func Get(client *Client, url string, response interface{}) error {
 		return errors.New(string(body))
 	}
 	return json.NewDecoder(res.Body).Decode(&response)
-}
-
-// GetScheduledEvent Returns information about a specified Event.
-func (cy *Calendly) GetScheduledEvent(client *Client, uuid string) (GetEventResponse, error) {
-	response := GetEventResponse{}
-
-	url := fmt.Sprintf("%s/scheduled_events/%s", client.baseURL, uuid)
-	err := Get(client, url, &response)
-
-	return response, err
 }
 
 // GetEventType Returns information about a specified Event Type.
