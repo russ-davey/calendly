@@ -34,7 +34,7 @@ func TestGetScheduledEvent(t *testing.T) {
 			os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 			client := NewClient("test")
 
-			results, err := cy.GetScheduledEvent(client, "b7f4a0b7-d377-47f1-810d-645ff87a2efb")
+			results, err := cy.ScheduledEvents.GetScheduledEvent(client, "b7f4a0b7-d377-47f1-810d-645ff87a2efb")
 			Convey("Then the details are successfully returned", func() {
 				So(err, ShouldBeNil)
 				So(results.Resource.EventType, ShouldEqual, "https://api.calendly.com/event_types/GBGBDCAADAEDCRZ2")
@@ -59,7 +59,7 @@ func TestGetScheduledEvent(t *testing.T) {
 			os.Setenv("CALENDLY_MOCK_SERVER", mockCalendlyAPI.URL)
 			client := NewClient("test")
 
-			_, err := cy.GetScheduledEvent(client, "b7f4a0b7-d377-47f1-810d-645ff87a2efb")
+			_, err := cy.ScheduledEvents.GetScheduledEvent(client, "b7f4a0b7-d377-47f1-810d-645ff87a2efb")
 			Convey("Then an error is returned", func() {
 				So(err, ShouldBeError)
 			})

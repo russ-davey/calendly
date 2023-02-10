@@ -16,8 +16,8 @@ type Client struct {
 }
 
 type Calendly struct {
-	Client *Client
-	ScheduledEvents
+	Client          *Client
+	ScheduledEvents ScheduledEvents
 }
 
 func NewClient(token string) *Client {
