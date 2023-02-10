@@ -36,7 +36,10 @@ More HTTP methods will be added soon.
 All scheduled events related API calls reside within the GetScheduledEvent struct:
 
 ```Go
-calendlyScheduledEvent, err := Calendly.GetScheduledEvent(client,uuid)
+client := calendly.NewClient("token")
+c := calendly.Calendly{}
+
+calendlyScheduledEvent, err := c.ScheduledEvents.GetScheduledEvent(client, "65381fac-a958-11ed-afa1-0242ac120002")
 ```
 
 
