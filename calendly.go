@@ -40,6 +40,7 @@ func UnmarshallAPIError(err error) ErrorBody {
 	return eb
 }
 
+// Get takes a client, API endpoint and a pointer to a struct then writes the API response data to that struct
 func Get(client *Client, url string, response interface{}) error {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
