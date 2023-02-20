@@ -15,8 +15,8 @@ func TestScheduledEvents(t *testing.T) {
 	os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 	client := NewClient("test")
 
-	Convey("Given the Calendly API scheduled_events endpoint needs to be accessed", t, func() {
-		Convey("When getting the scheduled events details", func() {
+	Convey("Given an HTTP request to the Calendly API scheduled_events endpoint", t, func() {
+		Convey("When getting the scheduled events", func() {
 			results, err := cy.ScheduledEvents.GetScheduledEvents(client)
 			Convey("Then the details are successfully returned", func() {
 				So(err, ShouldBeNil)
@@ -29,8 +29,8 @@ func TestScheduledEvents(t *testing.T) {
 func TestGetScheduledEvent(t *testing.T) {
 	cy := Calendly{}
 
-	Convey("Given the Calendly API scheduled_events endpoint needs to be accessed", t, func() {
-		Convey("When getting the scheduled_events details", func() {
+	Convey("Given an HTTP request to the Calendly API scheduled_events endpoint", t, func() {
+		Convey("When getting the scheduled event details", func() {
 			os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 			client := NewClient("test")
 
@@ -73,7 +73,7 @@ func TestGetInvitees(t *testing.T) {
 	os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 	client := NewClient("test")
 
-	Convey("Given the Calendly API scheduled_events/<UUID>/invitees endpoint needs to be accessed", t, func() {
+	Convey("Given an HTTP request to the Calendly API scheduled_events/<UUID>/invitees endpoint", t, func() {
 		Convey("When getting the invitees details", func() {
 			results, err := cy.ScheduledEvents.GetInvitees(client, "8ead31de-0033-457a-8646-124e61742999")
 			Convey("Then the details are successfully returned", func() {

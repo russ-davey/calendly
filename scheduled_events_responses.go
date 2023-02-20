@@ -54,9 +54,13 @@ type GetEventResponse struct {
 			CanceledBy   string `json:"canceled_by,omitempty"`
 			Reason       string `json:"reason,omitempty"`
 		} `json:"cancellation,omitempty"`
-		CreatedAt        time.Time     `json:"created_at"`
-		EndTime          time.Time     `json:"end_time"`
-		EventGuests      []interface{} `json:"event_guests"`
+		CreatedAt   time.Time `json:"created_at"`
+		EndTime     time.Time `json:"end_time"`
+		EventGuests []struct {
+			Email     string    `json:"email"`
+			CreatedAt time.Time `json:"created_at"`
+			UpdatedAt time.Time `json:"updated_at"`
+		} `json:"event_guests"`
 		EventMemberships []struct {
 			User string `json:"user"`
 		} `json:"event_memberships"`
@@ -116,12 +120,12 @@ type GetInviteeResponse struct {
 		TextReminderNumber string `json:"text_reminder_number"`
 		Timezone           string `json:"timezone"`
 		Tracking           struct {
-			UtmCampaign    interface{} `json:"utm_campaign"`
-			UtmSource      interface{} `json:"utm_source"`
-			UtmMedium      interface{} `json:"utm_medium"`
-			UtmContent     interface{} `json:"utm_content"`
-			UtmTerm        interface{} `json:"utm_term"`
-			SalesforceUuid interface{} `json:"salesforce_uuid"`
+			UtmCampaign    string `json:"utm_campaign"`
+			UtmSource      string `json:"utm_source"`
+			UtmMedium      string `json:"utm_medium"`
+			UtmContent     string `json:"utm_content"`
+			UtmTerm        string `json:"utm_term"`
+			SalesforceUuid string `json:"salesforce_uuid"`
 		} `json:"tracking"`
 		UpdatedAt             time.Time `json:"updated_at"`
 		Uri                   string    `json:"uri"`
@@ -135,7 +139,10 @@ type GetInviteeResponse struct {
 			Terms      string  `json:"terms"`
 			Successful bool    `json:"successful"`
 		} `json:"payment"`
-		NoShow         interface{} `json:"no_show"`
+		NoShow struct {
+			URI       string    `json:"uri,omitempty"`
+			CreatedAt time.Time `json:"created_at,omitempty"`
+		} `json:"no_show,omitempty"`
 		Reconfirmation struct {
 			CreatedAt   time.Time `json:"created_at"`
 			ConfirmedAt time.Time `json:"confirmed_at"`
