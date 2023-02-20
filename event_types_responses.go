@@ -18,15 +18,15 @@ type GetEventTypeResponse struct {
 			Required      bool     `json:"required"`
 			Type          string   `json:"type"`
 		} `json:"custom_questions"`
-		DeletedAt        interface{} `json:"deleted_at"`
-		DescriptionHtml  string      `json:"description_html"`
-		DescriptionPlain string      `json:"description_plain"`
-		Duration         int         `json:"duration"`
-		InternalNote     string      `json:"internal_note"`
-		Kind             string      `json:"kind"`
-		KindDescription  string      `json:"kind_description"`
-		Name             string      `json:"name"`
-		PoolingType      string      `json:"pooling_type"`
+		DeletedAt        string `json:"deleted_at"`
+		DescriptionHtml  string `json:"description_html"`
+		DescriptionPlain string `json:"description_plain"`
+		Duration         int    `json:"duration"`
+		InternalNote     string `json:"internal_note"`
+		Kind             string `json:"kind"`
+		KindDescription  string `json:"kind_description"`
+		Name             string `json:"name"`
+		PoolingType      string `json:"pooling_type"`
 		Profile          struct {
 			Name  string `json:"name"`
 			Owner string `json:"owner"`
@@ -39,16 +39,4 @@ type GetEventTypeResponse struct {
 		UpdatedAt     time.Time `json:"updated_at"`
 		URI           string    `json:"uri"`
 	} `json:"resource"`
-}
-
-type Details []struct {
-	Parameter string `json:"parameter,omitempty"`
-	Message   string `json:"message,omitempty"`
-}
-
-// ErrorBody all Calendly non-200 status bodies are returned in this struct format
-type ErrorBody struct {
-	Title   string `json:"title"`
-	Message string `json:"message"`
-	Details `json:"details,omitempty"`
 }

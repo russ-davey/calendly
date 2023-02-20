@@ -17,7 +17,20 @@ type Client struct {
 
 type Calendly struct {
 	Client          *Client
+	EventTypes      EventTypes
 	ScheduledEvents ScheduledEvents
+}
+
+type Details []struct {
+	Parameter string `json:"parameter,omitempty"`
+	Message   string `json:"message,omitempty"`
+}
+
+// ErrorBody all Calendly non-200 status bodies are returned in this struct format
+type ErrorBody struct {
+	Title   string `json:"title"`
+	Message string `json:"message"`
+	Details `json:"details,omitempty"`
 }
 
 func NewClient(token string) *Client {
@@ -60,14 +73,4 @@ func Get(client *Client, url string, response interface{}) error {
 		return errors.New(string(body))
 	}
 	return json.NewDecoder(res.Body).Decode(&response)
-}
-
-// GetEventType Returns information about a specified Event Type.
-func (cy *Calendly) GetEventType(client *Client, uuid string) (GetEventTypeResponse, error) {
-	response := GetEventTypeResponse{}
-
-	url := fmt.Sprintf("%s/event_types/%s", client.baseURL, uuid)
-	err := Get(client, url, &response)
-
-	return response, err
 }
