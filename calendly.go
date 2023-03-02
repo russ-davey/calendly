@@ -19,6 +19,7 @@ type Calendly struct {
 	Client          *Client
 	EventTypes      EventTypes
 	ScheduledEvents ScheduledEvents
+	Users           Users
 }
 
 type Details []struct {
