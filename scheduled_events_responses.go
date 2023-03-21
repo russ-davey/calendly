@@ -72,7 +72,7 @@ type GetEventResponse struct {
 		} `json:"invitees_counter"`
 		Location struct {
 			Data struct {
-				ID       int64 `json:"id"`
+				ID       string `json:"id"`
 				Settings struct {
 					GlobalDialInNumbers []struct {
 						CountryName string `json:"country_name"`
