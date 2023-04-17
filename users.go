@@ -2,14 +2,12 @@ package calendly
 
 import "fmt"
 
-type Users struct{}
-
 // GetUser Returns information about a specified User.
-func (u *Users) GetUser(client *Client, uuid string) (GetUserResponse, error) {
+func (c *Client) GetUser(uuid string) (GetUserResponse, error) {
 	response := GetUserResponse{}
 
-	url := fmt.Sprintf("%s/users/%s", client.baseURL, uuid)
-	err := Get(client, url, &response)
+	url := fmt.Sprintf("%s/users/%s", c.BaseURL, uuid)
+	err := c.Get(url, &response)
 
 	return response, err
 }

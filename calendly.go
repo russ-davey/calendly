@@ -11,15 +11,8 @@ import (
 )
 
 type Client struct {
-	baseURL string
+	BaseURL string
 	token   string
-}
-
-type Calendly struct {
-	Client          *Client
-	EventTypes      EventTypes
-	ScheduledEvents ScheduledEvents
-	Users           Users
 }
 
 type Details []struct {
@@ -43,7 +36,7 @@ func NewClient(token string) *Client {
 	}
 
 	return &Client{
-		baseURL: baseURL,
+		BaseURL: baseURL,
 		token:   token,
 	}
 }
@@ -55,12 +48,12 @@ func UnmarshallAPIError(err error) ErrorBody {
 }
 
 // Get takes a client, API endpoint and a pointer to a struct then writes the API response data to that struct
-func Get(client *Client, url string, response interface{}) error {
+func (c *Client) Get(url string, response interface{}) error {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", client.token))
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.token))
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

@@ -7,31 +7,31 @@ type ScheduledEvents struct{}
 // TODO: just a basic implementation, add more query parameters including pagination
 
 // GetScheduledEvents Returns a list of Events.
-func (s *ScheduledEvents) GetScheduledEvents(client *Client) (GetScheduledEventsResponse, error) {
+func (c *Client) GetScheduledEvents() (GetScheduledEventsResponse, error) {
 	response := GetScheduledEventsResponse{}
 
-	url := fmt.Sprintf("%s/scheduled_events", client.baseURL)
-	err := Get(client, url, &response)
+	url := fmt.Sprintf("%s/scheduled_events", c.BaseURL)
+	err := c.Get(url, &response)
 
 	return response, err
 }
 
 // GetScheduledEvent Returns information about a specified Event.
-func (s *ScheduledEvents) GetScheduledEvent(client *Client, uuid string) (GetEventResponse, error) {
+func (c *Client) GetScheduledEvent(uuid string) (GetEventResponse, error) {
 	response := GetEventResponse{}
 
-	url := fmt.Sprintf("%s/scheduled_events/%s", client.baseURL, uuid)
-	err := Get(client, url, &response)
+	url := fmt.Sprintf("%s/scheduled_events/%s", c.BaseURL, uuid)
+	err := c.Get(url, &response)
 
 	return response, err
 }
 
 // GetInvitees Returns a list of Invitees for an event.
-func (s *ScheduledEvents) GetInvitees(client *Client, uuid string) (GetInviteeResponse, error) {
+func (c *Client) GetInvitees(uuid string) (GetInviteeResponse, error) {
 	response := GetInviteeResponse{}
 
-	url := fmt.Sprintf("%s/scheduled_events/%s/invitees", client.baseURL, uuid)
-	err := Get(client, url, &response)
+	url := fmt.Sprintf("%s/scheduled_events/%s/invitees", c.BaseURL, uuid)
+	err := c.Get(url, &response)
 
 	return response, err
 }

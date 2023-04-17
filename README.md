@@ -37,9 +37,8 @@ All scheduled events related API calls reside within the GetScheduledEvent struc
 
 ```Go
 client := calendly.NewClient("token")
-c := calendly.Calendly{}
 
-calendlyScheduledEvent, err := c.ScheduledEvents.GetScheduledEvent(client, "65381fac-a958-11ed-afa1-0242ac120002")
+calendlyScheduledEvent, err := client.ScheduledEvents.GetScheduledEvent(client, "65381fac-a958-11ed-afa1-0242ac120002")
 ```
 
 
