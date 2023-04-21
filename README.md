@@ -41,4 +41,7 @@ client := calendly.NewClient("token")
 calendlyScheduledEvent, err := client.ScheduledEvents.GetScheduledEvent(client, "65381fac-a958-11ed-afa1-0242ac120002")
 ```
 
+# Contributing
+If you would like to contribute to the Calendly API client, please fork the repository and submit a pull request. 
+All contributions are welcome, including bug fixes, new features, and documentation improvements.
 
