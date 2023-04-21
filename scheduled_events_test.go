@@ -14,8 +14,8 @@ func TestScheduledEvents(t *testing.T) {
 		os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 		client := NewClient("test")
 
-		Convey("When the GetScheduledEvents function is called", func() {
-			results, err := client.GetScheduledEvents()
+		Convey("When the GetAll function is called", func() {
+			results, err := client.ScheduledEvents.GetAll()
 
 			Convey("Then a list of the scheduled events are returned", func() {
 				So(err, ShouldBeNil)
@@ -30,8 +30,8 @@ func TestGetScheduledEvent(t *testing.T) {
 		os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 		client := NewClient("test")
 
-		Convey("When the GetScheduledEvent function is called", func() {
-			results, err := client.GetScheduledEvent("b7f4a0b7-d377-47f1-810d-645ff87a2efb")
+		Convey("When the Get function is called", func() {
+			results, err := client.ScheduledEvents.Get("b7f4a0b7-d377-47f1-810d-645ff87a2efb")
 
 			Convey("Then the event details are returned", func() {
 				So(err, ShouldBeNil)
@@ -57,7 +57,7 @@ func TestGetScheduledEvent(t *testing.T) {
 			os.Setenv("CALENDLY_MOCK_SERVER", mockCalendlyAPI.URL)
 			client := NewClient("test")
 
-			_, err := client.GetScheduledEvent("b7f4a0b7-d377-47f1-810d-645ff87a2efb")
+			_, err := client.ScheduledEvents.Get("b7f4a0b7-d377-47f1-810d-645ff87a2efb")
 			Convey("Then the error is handled and returned", func() {
 				So(err, ShouldBeError)
 			})
@@ -70,7 +70,7 @@ func TestGetInvitees(t *testing.T) {
 		os.Setenv("CALENDLY_MOCK_SERVER", "https://stoplight.io/mocks/calendly/api-docs/395")
 		client := NewClient("test")
 		Convey("When the GetInvitees function is called", func() {
-			results, err := client.GetInvitees("8ead31de-0033-457a-8646-124e61742999")
+			results, err := client.ScheduledEvents.GetInvitees("8ead31de-0033-457a-8646-124e61742999")
 
 			Convey("Then the invitees details are returned", func() {
 				So(err, ShouldBeNil)

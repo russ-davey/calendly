@@ -11,8 +11,11 @@ import (
 )
 
 type Client struct {
-	BaseURL string
-	token   string
+	BaseURL         string
+	token           string
+	EventTypes      *EventTypesService
+	ScheduledEvents *ScheduledEventsService
+	Users           *UsersService
 }
 
 type Details []struct {
@@ -35,10 +38,16 @@ func NewClient(token string) *Client {
 		baseURL = "https://api.calendly.com"
 	}
 
-	return &Client{
+	c := &Client{
 		BaseURL: baseURL,
 		token:   token,
 	}
+
+	c.EventTypes = &EventTypesService{client: c}
+	c.ScheduledEvents = &ScheduledEventsService{client: c}
+	c.Users = &UsersService{client: c}
+
+	return c
 }
 
 func UnmarshallAPIError(err error) ErrorBody {
