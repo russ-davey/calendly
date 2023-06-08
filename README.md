@@ -1,5 +1,5 @@
 # calendly
-Basic API client for accessing the Calendly API
+Basic API client for the Calendly API
 
 Nothing too flashy for the moment, but more functionally will be added over time
 
